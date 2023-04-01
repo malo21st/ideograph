@@ -3,8 +3,6 @@ from streamlit_agraph import agraph, Node, Edge, Config
 import numpy as np
 import random
 
-st.session_state['first_time'] = True
-
 def generate_edge_lst(size = 100):
     generator = np.random.default_rng()
     rnd = generator.normal(size=size)
@@ -18,6 +16,8 @@ def generate_edge_lst(size = 100):
                 node_dic[node+1] = [1]
             edge_lst.append(((node, random.choice(node_dic[node])), (node+1, node_dic[node+1][-1])))
     return edge_lst
+
+st.session_state['first_time'] = True
 
 if 'edge_lst' not in st.session_state:
     st.session_state['edge_lst'] = generate_edge_lst()
@@ -41,5 +41,6 @@ if st.sidebar.button("PUSH"):
     st.session_state['edges'].append(Edge(source=f"{src}", target=f"{tgt}"))
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     result = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
-    st.sidebar.write(f"{st.session_state['nodes']}")
-    st.sidebar.write(f"{st.session_state['edges']}")
+    st.sidebar.write(f"{src} {tgt}")
+    st.sidebar.write(f"Node: {len(st.session_state['nodes'])}")
+    st.sidebar.write(f"Edge: {len(st.session_state['edges'])}")
