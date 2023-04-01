@@ -30,7 +30,7 @@ def get_AI_word(word):
     AI_word = response.choices[0]['message']['content']
     if AI_word in st.session_state['label'].values():
         get_AI_word(word)
-    return response.choices[0]['message']['content']
+    return AI_word
 
 if 'edge_lst' not in st.session_state:
     st.session_state['first_time'] = True
