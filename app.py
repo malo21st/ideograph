@@ -28,8 +28,8 @@ def get_AI_word(word):
         temperature=random.random()
     )
     AI_word = response.choices[0]['message']['content'].strip()
-    if AI_word in list(st.session_state['label'].values()):
-        get_AI_word(word)
+#     if AI_word in list(st.session_state['label'].values()):
+#         get_AI_word(word)
     return AI_word
 
 if 'edge_lst' not in st.session_state:
