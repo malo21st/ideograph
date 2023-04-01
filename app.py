@@ -1,5 +1,6 @@
 import streamlit as st
 from streamlit_agraph import agraph, Node, Edge, Config
+import openai
 import numpy as np
 import random
 
