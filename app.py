@@ -21,7 +21,7 @@ def generate_edge_lst(size = 100):
 
 if 'edge_lst' not in st.session_state:
     st.session_state['edge_lst'] = generate_edge_lst()
-    st.session_state['nodes'] = [Node(id=str((0, 1)), label=theme, size=10)]
+    st.session_state['nodes'] = [Node(id="(0, 1)", label="", size=10)]
     st.session_state['edges'] = list()
 
 # layout
