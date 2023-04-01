@@ -28,6 +28,7 @@ st.sidebar.header("AI Mind Map")
 theme = st.sidebar.text_input("**お題を入力してください :**")
 
 if theme and st.session_state['first_time']:
+    st.sidebar.write(theme)
     st.session_state['nodes'] = [Node(id=str((0, 1)), label=theme, size=10)]
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
@@ -35,6 +36,7 @@ if theme and st.session_state['first_time']:
 
 if st.sidebar.button("PUSH"):
     src, tgt = st.session_state['edge_lst'].pop(0)
+    st.sidebar.write(f"{src} {tgt}")
     st.session_state['nodes'].append(Node(id=f"{tgt}", label=f"{tgt}", size=5))
     st.session_state['edges'].append(Edge(source=f"{src}", target=f"{tgt}"))
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
