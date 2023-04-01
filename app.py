@@ -21,6 +21,7 @@ def generate_edge_lst(size = 100):
 
 if 'edge_lst' not in st.session_state:
     st.session_state['edge_lst'] = generate_edge_lst()
+    st.session_state['nodes'] = [Node(id=str((0, 1)), label=theme, size=10)]
     st.session_state['edges'] = list()
 
 # layout
@@ -29,7 +30,7 @@ theme = st.sidebar.text_input("**お題を入力してください :**")
 
 if theme and st.session_state['first_time']:
 #     st.sidebar.write(theme)
-    st.session_state['nodes'] = [Node(id=str((0, 1)), label=theme, size=10)]
+    st.session_state['nodes'][0].label = theme
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     result = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
     st.session_state['first_time'] = False
