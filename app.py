@@ -5,12 +5,12 @@ import time
 if 'count' not in st.session_state:
     st.session_state['count'] = 0
     st.session_state['nodes'] = [Node(id=0, label="0", size=10)]
+    st.session_state['edges'] = list()
     
 # if 'nodes' not in st.session_state:
 #     st.session_state['nodes'] = list()
     
-if 'edges' not in st.session_state:
-    st.session_state['edges'] = list()
+# if 'edges' not in st.session_state:
     
 # if st.button("PUSH"):
 if st.session_state['count'] < 6:
