@@ -25,11 +25,11 @@ def get_AI_word(word):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": question}],
-        temperature=random.random() + 0.5
+        temperature=random.random() + 0.7
     )
     AI_word = response.choices[0]['message']['content'].strip()
-#     if AI_word in list(st.session_state['label'].values()):
-#         get_AI_word(word)
+    if AI_word in list(st.session_state['label'].values()):
+        get_AI_word(word)
     return AI_word
 
 if 'edge_lst' not in st.session_state:
