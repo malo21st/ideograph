@@ -21,7 +21,7 @@ def generate_edge_lst(size = 100):
     return edge_lst
 
 def get_AI_word(word):
-    question = f"{word} に関連のある数々の単語から１単語を選んで答えなさい\n\n単語:"
+    question = f"{word} に関連のある数々の単語の中からランダムに１単語を選んで答えなさい\n\n単語:"
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": question}],
