@@ -24,8 +24,12 @@ def get_AI_word(word):
     question = f"{word} に関連のある単語を１つ答えて下さい"
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
-        messages=[{"role": "user", "content": question}]
+        messages=[{"role": "user", "content": question}],
+        temperature=random()
     )
+    AI_word = response.choices[0]['message']['content']
+    if AI_word in st.session_state['label'].values():
+        get_AI_word(word)
     return response.choices[0]['message']['content']
 
 if 'edge_lst' not in st.session_state:
