@@ -4,7 +4,7 @@ import time
 
 if 'count' not in st.session_state:
     st.session_state['count'] = 0
-    st.session_state['nodes'].append(Node(id=0, label="0", size=25))
+    st.session_state['nodes'] = [Node(id=0, label="0", size=25)]
     
 # if 'nodes' not in st.session_state:
 #     st.session_state['nodes'] = list()
