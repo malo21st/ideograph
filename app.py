@@ -3,6 +3,8 @@ from streamlit_agraph import agraph, Node, Edge, Config
 import numpy as np
 import random
 
+openai.api_key = st.secrets['api_key']
+
 def generate_edge_lst(size = 100):
     generator = np.random.default_rng()
     rnd = generator.normal(size=size)
