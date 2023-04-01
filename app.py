@@ -6,6 +6,9 @@ import random
 
 openai.api_key = st.secrets['api_key']
 
+def tuple2key(tpl):
+    return f"{tpl[0]}_{tpl[1]}"
+
 def generate_edge_lst(size = 100):
     generator = np.random.default_rng()
     rnd = generator.normal(size=size)
@@ -32,8 +35,6 @@ def get_AI_word(word, NG_word):
         temperature=random.random() + 0.
     )
     AI_word = response.choices[0]['message']['content'].strip()
-#     if AI_word in list(st.session_state['label'].values()):
-#         get_AI_word(word)
     return AI_word
 
 if 'edge_lst' not in st.session_state:
@@ -48,21 +49,20 @@ st.sidebar.header("AI Mind Map")
 theme = st.sidebar.text_input("**お題を入力してください :**")
 
 if theme and st.session_state['first_time']:
-    st.session_state['nodes'].append(Node(id=str((0, 1)), label=theme, size=10))
-    st.session_state['label'][str((0, 1))] = theme
+    st.session_state['nodes'].append(Node(id=tuple2key((0, 1)), label=theme, size=10))
+    st.session_state['label'][tuple2key((0, 1))] = theme
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     result = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
     st.session_state['first_time'] = False
-#     st.sidebar.write(f"Node: {len(st.session_state['nodes'])}")
 
 if st.sidebar.button("think... THINK !"):
     src, tgt = st.session_state['edge_lst'].pop(0)
-    word = st.session_state['label'][f"{src}"]
+    word = st.session_state['label'][tuple2key(src)]
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
-    st.session_state['nodes'].append(Node(id=f"{tgt}", label=AI_word, size=5))
-    st.session_state['edges'].append(Edge(source=f"{src}", target=f"{tgt}"))
+    st.session_state['nodes'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
+    st.session_state['edges'].append(Edge(source=tuple2key(src), target=tuple2key(tgt)))
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     result = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
-    st.session_state['label'][f"{tgt}"] = AI_word
+    st.session_state['label'][tuple2key(tgt)] = AI_word
 #     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
 #     st.sidebar.write(f"{st.session_state['label'].values()}")
