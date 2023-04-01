@@ -12,8 +12,8 @@ if 'count' not in st.session_state:
 if st.sidebar.button("PUSH"):
     st.session_state['count'] += 1
     tgt = st.session_state['count']
-    src = random.choice(st.session_state['nodes'])
+    src_node = random.choice(st.session_state['nodes'])
     st.session_state['nodes'].append(Node(id=tgt, label=f"{tgt}", size=5))
-    st.session_state['edges'].append(Edge(source=src, target=tgt))
+    st.session_state['edges'].append(Edge(source=src_node.id, target=tgt))
     config = Config(width=500, height=500, directed=False, physics=True, hierarchical=False)
     return_value = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
