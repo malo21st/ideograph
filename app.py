@@ -29,7 +29,7 @@ def get_AI_word(word, NG_word):
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": question}],
-        temperature=random.random() + 0.8
+        temperature=random.random() + 0.
     )
     AI_word = response.choices[0]['message']['content'].strip()
 #     if AI_word in list(st.session_state['label'].values()):
