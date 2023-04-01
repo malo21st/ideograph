@@ -6,7 +6,7 @@ import random
 def generate_edge_lst(size = 100):
     generator = np.random.default_rng()
     rnd = generator.normal(size=size)
-    nodes = [int(abs(n) // 0.65) for n in rnd]
+    nodes = [int(abs(n) // 0.7) for n in rnd]
     node_dic, edge_lst = {0: [1]}, list()
     for node in nodes:
         if node_dic.get(node, False):
