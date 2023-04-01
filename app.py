@@ -17,9 +17,13 @@ def generate_edge_lst(size = 100):
             edge_lst.append(((node, random.choice(node_dic[node])), (node+1, node_dic[node+1][-1])))
     return edge_lst
 
-if 'edge_lst' not in st.session_state:
+# layout
+st.sidebar.header("AI Mind Map")
+theme = st.sidebar.text_input("**お題を入力してください :**")
+
+if theme:
     st.session_state['edge_lst'] = generate_edge_lst()
-    st.session_state['nodes'] = [Node(id=str((0, 1)), label="(0, 1)", size=10)]
+    st.session_state['nodes'] = [Node(id=str((0, 1)), label=theme, size=10)]
     st.session_state['edges'] = list()
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     return_value = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
