@@ -21,7 +21,7 @@ def generate_edge_lst(size = 100):
 if 'count' not in st.session_state:
     st.session_state['edge_lst'] = generate_edge_lst()
     st.session_state['count'] = 0
-    st.session_state['nodes'] = [Node(id=(0, 1), label="(0, 1)", size=10)]
+    st.session_state['nodes'] = [Node(id=str((0, 1)), label="(0, 1)", size=10)]
     st.session_state['edges'] = list()
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     return_value = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
@@ -31,7 +31,7 @@ if st.sidebar.button("PUSH"):
 #     st.session_state['count'] += 1
 #     tgt = st.session_state['count']
 #     src_node = random.choice(st.session_state['nodes'])
-    st.session_state['nodes'].append(Node(id=tgt, label=f"{tgt}", size=5))
-    st.session_state['edges'].append(Edge(source=src, target=tgt))
+    st.session_state['nodes'].append(Node(id=f"{tgt}", label=f"{tgt}", size=5))
+    st.session_state['edges'].append(Edge(source=f"{src}", target=f"{tgt}"))
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     return_value = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
