@@ -13,9 +13,9 @@ if 'edges' not in st.session_state:
     st.session_state['edges'] = list()
     
 # if st.button("PUSH"):
-for st.session_state['count'] < 10:
-    st.session_state['count'] += 1
-    i = st.session_state['count']
+for i in range(1, 10):
+    st.session_state['count'] = i
+#     i = st.session_state['count']
     st.session_state['nodes'].append(Node(id=i, label=f"{i}", size=5))
     st.session_state['edges'].append(Edge(source=0, target=i))
     config = Config(width=500, height=500, directed=False, physics=True, hierarchical=False)
