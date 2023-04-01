@@ -14,7 +14,7 @@ if 'count' not in st.session_state:
 config = Config(width=500, height=500, directed=False, physics=True, hierarchical=False)
 return_value = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
     
-if st.button("PUSH"):
+if st.sidebar.button("PUSH"):
 # if st.session_state['count'] < 6:
 # for i in range(1, 6):
     st.session_state['count'] += 1
