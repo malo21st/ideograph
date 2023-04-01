@@ -55,7 +55,7 @@ if theme and st.session_state['first_time']:
     st.session_state['first_time'] = False
 #     st.sidebar.write(f"Node: {len(st.session_state['nodes'])}")
 
-if st.sidebar.button("think. THINK!"):
+if st.sidebar.button("think... THINK !"):
     src, tgt = st.session_state['edge_lst'].pop(0)
     word = st.session_state['label'][f"{src}"]
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
