@@ -17,7 +17,7 @@ if st.button("PUSH"):
     i = st.session_state['count']
     st.session_state['nodes'].append(Node(id=i, label=f"{i}", size=25))
     st.session_state['edges'].append(Edge(source=0, target=i))
-    config = Config(width=750, height=950, directed=False, physics=True, hierarchical=False)
+    config = Config(width=500, height=500, directed=False, physics=True, hierarchical=False)
     agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
 #     time.sleep(3)
 # return_value = agraph(nodes=nodes, edges=edges, config=config)
