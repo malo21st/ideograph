@@ -19,7 +19,7 @@ def generate_edge_lst(size = 100):
             edge_lst.append(((node, random.choice(node_dic[node])), (node+1, node_dic[node+1][-1])))
     return edge_lst
 
-if st.session_state['edge_lst'] is None:
+if 'edge_lst' not in st.session_state:
     st.session_state['edge_lst'] = generate_edge_lst()
     st.session_state['edges'] = list()
 
