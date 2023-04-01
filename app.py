@@ -61,5 +61,4 @@ if st.sidebar.button("PUSH"):
     result = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
     st.session_state['label'][f"{tgt}"] = AI_word
     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
-    st.sidebar.write(f"Node: {len(st.session_state['nodes'])}")
-    st.sidebar.write(f"Edge: {len(st.session_state['edges'])}")
+    st.sidebar.write(f"{st.session_state['label'].values()}")
