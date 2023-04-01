@@ -21,10 +21,10 @@ def generate_edge_lst(size = 100):
     return edge_lst
 
 def get_AI_word(word, NG_word):
-    question = f"""
-{word} に関連のある単語をＮＧワードを避けて答えなさい
+    question = f"""ＮＧワード を避けて、{word} に関連のある単語を答えなさい
 # ＮＧワード: {NG_word}
-単語:
+
+# 単語: 
 """
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
