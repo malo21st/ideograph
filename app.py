@@ -5,31 +5,16 @@ import time
 nodes = []
 edges = []
 
-nodes.append( Node(id=0, 
-                   label="0", 
-                   size=25, 
-                  )
-            ) # includes **kwargs
+config = Config(width=750, height=950,
+                directed=False, physics=True, hierarchical=False,
+                )
+
+nodes.append(Node(id=0, label="0", size=25))
 
 for i in range(1, 5):
-    nodes.append( Node(id=i, 
-                       label=f"{i}", 
-                       size=25,
-                      )
-                )
-    edges.append( Edge(source=0, 
-                       target=i, 
-                       ) 
-                )
+    nodes.append(Node(id=i, label=f"{i}", size=25))
+    edges.append( Edge(source=0, target=i))
     time.sleep(3)
+    agraph(nodes=nodes, edges=edges, config=config)
 
-config = Config(width=750,
-                height=950,
-                directed=False, 
-                physics=True, 
-                hierarchical=False,
-                )
-
-return_value = agraph(nodes=nodes, 
-                      edges=edges, 
-                      config=config)
+# return_value = agraph(nodes=nodes, edges=edges, config=config)
