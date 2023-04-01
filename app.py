@@ -23,5 +23,5 @@ for i in range(1, 6):
     agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
     time.sleep(2)
     
-agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
+# agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
 # return_value = agraph(nodes=nodes, edges=edges, config=config)
