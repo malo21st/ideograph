@@ -27,7 +27,7 @@ def get_AI_word(word):
         messages=[{"role": "user", "content": question}],
         temperature=random.random()
     )
-    AI_word = response.choices[0]['message']['content']
+    AI_word = response.choices[0]['message']['content'].strip()
     if AI_word in st.session_state['label'].values():
         get_AI_word(word)
     return AI_word
