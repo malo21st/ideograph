@@ -12,7 +12,7 @@ if 'edges' not in st.session_state:
     st.session_state['edges'] = list()
     
 config = Config(width=750, height=950, directed=False, physics=True, hierarchical=False)
-nodes.append(Node(id=0, label="0", size=25))
+st.session_state['nodes'].append(Node(id=0, label="0", size=25))
 
 if st.button("PUSH"):
     st.session_state['count'] += 1
