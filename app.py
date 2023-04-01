@@ -3,22 +3,23 @@ from streamlit_agraph import agraph, Node, Edge, Config
 
 nodes = []
 edges = []
-nodes.append( Node(id="Spiderman", 
-                   label="Peter Parker", 
+nodes.append( Node(id="pref01", 
+                   label="東京", 
                    size=25, 
 #                    shape="circularImage",
 #                    image="http://marvel-force-chart.surge.sh/marvel_force_chart_img/top_spiderman.png"
                   )
             ) # includes **kwargs
-nodes.append( Node(id="Captain_Marvel", 
+nodes.append( Node(id="pref02", 
+                   label="福岡", 
                    size=25,
 #                    shape="circularImage",
 #                    image="http://marvel-force-chart.surge.sh/marvel_force_chart_img/top_captainmarvel.png"
                   )
             )
-edges.append( Edge(source="Captain_Marvel", 
-                   label="friend_of", 
-                   target="Spiderman", 
+edges.append( Edge(source="pref01", 
+#                    label="friend_of", 
+                   target="pref02", 
                    # **kwargs
                    ) 
             ) 
