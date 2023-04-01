@@ -17,8 +17,13 @@ def generate_edge_lst(size = 100):
             edge_lst.append(((node, random.choice(node_dic[node])), (node+1, node_dic[node+1][-1])))
     return edge_lst
 
-def get_AI_word(word, tgt):
-    return f"{word}_{tgt}"
+def get_AI_word(word):
+    question = f"{word} に関連のある単語を１つ答えて下さい"
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": question}]
+    )
+    return response.choices[0]['message']
 
 if 'edge_lst' not in st.session_state:
     st.session_state['first_time'] = True
@@ -42,7 +47,7 @@ if theme and st.session_state['first_time']:
 if st.sidebar.button("PUSH"):
     src, tgt = st.session_state['edge_lst'].pop(0)
     word = st.session_state['label'][f"{src}"]
-    AI_word = get_AI_word(word, tgt)
+    AI_word = get_AI_word(word)
     st.session_state['nodes'].append(Node(id=f"{tgt}", label=AI_word, size=5))
     st.session_state['edges'].append(Edge(source=f"{src}", target=f"{tgt}"))
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
