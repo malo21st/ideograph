@@ -26,7 +26,7 @@ def get_AI_word(word):
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": question}]
     )
-    return response.choices[0]['message']
+    return response.choices[0]['message']['content']
 
 if 'edge_lst' not in st.session_state:
     st.session_state['first_time'] = True
