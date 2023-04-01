@@ -21,15 +21,15 @@ def generate_edge_lst(size = 100):
     return edge_lst
 
 def get_AI_word(word):
-    question = f"{word} に関連のある単語を適当に１つ答えて下さい"
+    question = f"{word} に関連のある単語の中から１つ答えて下さい"
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": question}],
-        temperature=random.random() + 0.7
+        temperature=random.random() + 0.8
     )
     AI_word = response.choices[0]['message']['content'].strip()
-    if AI_word in list(st.session_state['label'].values()):
-        get_AI_word(word)
+#     if AI_word in list(st.session_state['label'].values()):
+#         get_AI_word(word)
     return AI_word
 
 if 'edge_lst' not in st.session_state:
