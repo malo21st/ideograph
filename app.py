@@ -18,8 +18,8 @@ if st.button("PUSH"):
     st.session_state['count'] += 1
     i = st.session_state['count']
     st.write(i)
-    nodes.append(Node(id=i, label=f"{i}", size=25))
-    edges.append(Edge(source=0, target=i))
-    agraph(nodes=nodes, edges=edges, config=config)
+    st.session_state['nodes'].append(Node(id=i, label=f"{i}", size=25))
+    st.session_state['edges'].append(Edge(source=0, target=i))
+    agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
     time.sleep(3)
 # return_value = agraph(nodes=nodes, edges=edges, config=config)
