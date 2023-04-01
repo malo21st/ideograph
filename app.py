@@ -23,10 +23,16 @@ edges.append( Edge(source="pref01",
                    # **kwargs
                    ) 
             ) 
+edges.append( Edge(source="pref01", 
+#                    label="friend_of", 
+                   target="pref01", 
+                   # **kwargs
+                   ) 
+            ) 
 
 config = Config(width=750,
                 height=950,
-                directed=True, 
+                directed=False, 
                 physics=True, 
                 hierarchical=False,
                 # **kwargs
