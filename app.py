@@ -7,12 +7,14 @@ nodes.append( Node(id="Spiderman",
                    label="Peter Parker", 
                    size=25, 
 #                    shape="circularImage",
-#                    image="http://marvel-force-chart.surge.sh/marvel_force_chart_img/top_spiderman.png") 
+#                    image="http://marvel-force-chart.surge.sh/marvel_force_chart_img/top_spiderman.png"
+                  )
             ) # includes **kwargs
 nodes.append( Node(id="Captain_Marvel", 
                    size=25,
 #                    shape="circularImage",
-#                    image="http://marvel-force-chart.surge.sh/marvel_force_chart_img/top_captainmarvel.png") 
+#                    image="http://marvel-force-chart.surge.sh/marvel_force_chart_img/top_captainmarvel.png"
+                  )
             )
 edges.append( Edge(source="Captain_Marvel", 
                    label="friend_of", 
