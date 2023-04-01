@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_agraph import agraph, Node, Edge, Config
-import time
+import random
 
 if 'count' not in st.session_state:
     st.session_state['count'] = 0
@@ -8,21 +8,12 @@ if 'count' not in st.session_state:
     st.session_state['edges'] = list()
     config = Config(width=500, height=500, directed=False, physics=True, hierarchical=False)
     return_value = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
-# if 'nodes' not in st.session_state:
-#     st.session_state['nodes'] = list()
-    
-# if 'edges' not in st.session_state:
-    
+
 if st.sidebar.button("PUSH"):
-# if st.session_state['count'] < 6:
-# for i in range(1, 6):
     st.session_state['count'] += 1
-    i = st.session_state['count']
-    st.session_state['nodes'].append(Node(id=i, label=f"{i}", size=5))
-    st.session_state['edges'].append(Edge(source=0, target=i))
+    tgt = st.session_state['count']
+    src = random.choice(st.session_state['nodes'])
+    st.session_state['nodes'].append(Node(id=tgt, label=f"{tgt}", size=5))
+    st.session_state['edges'].append(Edge(source=src, target=tgt))
     config = Config(width=500, height=500, directed=False, physics=True, hierarchical=False)
     return_value = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
-#     time.sleep(2)
-    
-# agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
-# return_value = agraph(nodes=nodes, edges=edges, config=config)
