@@ -22,4 +22,6 @@ for i in range(1, 6):
     config = Config(width=500, height=500, directed=False, physics=True, hierarchical=False)
     agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
     time.sleep(2)
+    
+agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
 # return_value = agraph(nodes=nodes, edges=edges, config=config)
