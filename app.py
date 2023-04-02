@@ -47,6 +47,7 @@ def get_AI_word(word, NG_word):
     )
     AI_word = response.choices[0]['message']['content'].strip()
     if len(AI_word) > 25:
+        AI_word = AI_word[:10]
         get_AI_word(word, NG_word)
     return AI_word
 
