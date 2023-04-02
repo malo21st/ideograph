@@ -62,8 +62,8 @@ if theme != st.session_state['theme']:
     initialize()
     st.session_state['node'].append(Node(id=tuple2key((0, 1)), label=theme, size=10))
     st.session_state['label'][tuple2key((0, 1))] = theme
-    config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
-    result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
+#     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
+#     result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
     st.session_state['theme'] = theme
 
 if st.sidebar.button("think... THINK !"):
@@ -92,5 +92,6 @@ if st.session_state['theme']:
         mime='text',
     )
 
-config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
-result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
+if st.session_state['theme']:
+    config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
+    result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
