@@ -14,8 +14,8 @@ def tuple2key(tpl):
 def generate_edge_lst(size = 100):
     generator = np.random.default_rng()
     rnd = generator.normal(size=size)
-#     nodes = [int(abs(n) // 0.7) for n in rnd]
-    nodes = [0]*7 + [int(abs(n) // 0.9)+1 for n in rnd]
+    nodes = [int(abs(n) // 0.7) for n in rnd] # 0.5 0.7 1.0
+#     nodes = [0]*7 + [int(abs(n) // 0.9)+1 for n in rnd]
     node_dic, edge_lst = {0: [1]}, list()
     for node in nodes:
         if node_dic.get(node, False):
