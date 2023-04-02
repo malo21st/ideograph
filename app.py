@@ -57,13 +57,10 @@ def get_AI_word(word, NG_word):
 st.sidebar.header("AI Mind Map")
 theme = st.sidebar.text_input("**お題を入力してください :**")
 
-# if theme and st.session_state['first_time']:
 if theme != st.session_state['theme']:
     initialize()
     st.session_state['node'].append(Node(id=tuple2key((0, 1)), label=theme, size=10))
     st.session_state['label'][tuple2key((0, 1))] = theme
-#     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
-#     result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
     st.session_state['theme'] = theme
 
 if st.sidebar.button("think... THINK !"):
@@ -72,8 +69,6 @@ if st.sidebar.button("think... THINK !"):
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
     st.session_state['node'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
     st.session_state['edge'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), width=3))
-#     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
-#     result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
     st.session_state['label'][tuple2key(tgt)] = AI_word
     st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
 #     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
@@ -83,8 +78,8 @@ if st.sidebar.button("think... THINK !"):
 if st.session_state['theme']:
     mmap_dic = dict()
     label_dic = st.session_state['label']
-    mmap_dic["nodes"] = [{"id": "f'{node.id}'", "label": "f'{label_dic[node.id]}'"} for node in st.session_state['node']]
-    mmap_dic["edges"] = [{"id": "f'{idx}'", "source": "f'{edge.source}'", "target": "f'{edge.target}'"} for idx, edge in enumerate(st.session_state['edge'])]
+    mmap_dic["nodes"] = [{"id": node.id, "label": label_dic[node.id]} for node in st.session_state['node']]
+    mmap_dic["edges"] = [{"id": idx, "source": edge.source, "target": edge.target} for idx, edge in enumerate(st.session_state['edge'])]
     st.sidebar.download_button(
         label="JSONダウンロード",
         data=json.dumps(mmap_dic),
