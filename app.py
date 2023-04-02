@@ -70,7 +70,7 @@ if st.sidebar.button("think... THINK !"):
     st.session_state['node'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
     st.session_state['edge'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), width=3))
     st.session_state['label'][tuple2key(tgt)] = AI_word
-    st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
+#     st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
 #     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
 #     st.sidebar.write(f"{st.session_state['label'].values()}")
 #     st.sidebar.write(f"{st.session_state['edge_lst'][:3]}")
@@ -79,7 +79,7 @@ if st.session_state['theme']:
     mmap_dic = dict()
     label_dic = st.session_state['label']
     mmap_dic["nodes"] = [{"id": node.id, "label": label_dic[node.id]} for node in st.session_state['node']]
-    mmap_dic["edges"] = [{"id": idx, "source": edge.source, "target": edge.source} for idx, edge in enumerate(st.session_state['edge'])]
+    mmap_dic["edges"] = [{"id": idx, "source": edge.source, "target": edge.to} for idx, edge in enumerate(st.session_state['edge'])]
     st.sidebar.download_button(
         label="JSONダウンロード",
         data=json.dumps(mmap_dic),
@@ -88,5 +88,5 @@ if st.session_state['theme']:
     )
 
 if st.session_state['theme']:
-    config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
+    config = Config(width=800, height=800, directed=False, physics=True, hierarchical=False)
     result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
