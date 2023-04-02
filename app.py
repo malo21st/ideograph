@@ -78,7 +78,7 @@ if st.sidebar.button("think... THINK !"):
 #     st.sidebar.write(f"{st.session_state['label'].values()}")
 #     st.sidebar.write(f"{st.session_state['edge_lst'][:3]}")
 
-if not st.session_state['node'].empty:
+if st.session_state['node']:
     mmap_dic = dict()
     label_dic = st.session_state['label']
     mmap_dic["nodes"] = [{"id": "f'{node.id}'", "label": "f'{label_dic[node.id]}'"} for node in st.session_state['node']]
