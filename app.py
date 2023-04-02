@@ -70,10 +70,9 @@ if st.sidebar.button("think! THINK!!  THINK !!!"):
     st.session_state['node'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
     st.session_state['edge'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), width=3))
     st.session_state['label'][tuple2key(tgt)] = AI_word
-
-st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
-
+    
 if st.session_state['theme']:
+    st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
     mmap_dic = dict()
     label_dic = st.session_state['label']
     mmap_dic["nodes"] = [{"id": node.id, "label": label_dic[node.id]} for node in st.session_state['node']]
