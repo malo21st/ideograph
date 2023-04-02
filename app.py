@@ -60,7 +60,7 @@ if st.sidebar.button("think... THINK !"):
     word = st.session_state['label'][tuple2key(src)]
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
     st.session_state['nodes'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
-    st.session_state['edges'].append(Edge(source=tuple2key(src), target=tuple2key(tgt)))
+    st.session_state['edges'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), type="CURVE_SMOOTH"))
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     result = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
     st.session_state['label'][tuple2key(tgt)] = AI_word
