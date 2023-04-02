@@ -7,6 +7,9 @@ from tenacity import retry, wait_fixed
 
 openai.api_key = st.secrets['api_key']
 
+if 'theme' not in st.session_state:
+    st.session_state['theme'] = ""
+
 def tuple2key(tpl):
     return f"{tpl[0]}_{tpl[1]}"
 
@@ -24,6 +27,12 @@ def generate_edge_lst(size = 100):
             edge_lst.append(((node, random.choice(node_dic[node])), (node+1, node_dic[node+1][-1])))
     return edge_lst
 
+def initialize():
+    st.session_state['edge_lst'] = generate_edge_lst()
+    st.session_state['node'] = list()
+    st.session_state['edge'] = list()
+    st.session_state['label'] = dict()
+
 @retry(wait=wait_fixed(2))
 def get_AI_word(word, NG_word):
     question = f"""ＮＧワード を避けて、{word} に関連のある単語を１つ答えなさい
@@ -37,16 +46,9 @@ def get_AI_word(word, NG_word):
         temperature=random.random()
     )
     AI_word = response.choices[0]['message']['content'].strip()
+    if len(AI_word) > 25:
+        get_AI_word(word, NG_word)
     return AI_word
-
-if 'theme' not in st.session_state:
-    st.session_state['theme'] = ""
-
-def initialize():
-    st.session_state['edge_lst'] = generate_edge_lst()
-    st.session_state['node'] = list()
-    st.session_state['edge'] = list()
-    st.session_state['label'] = dict()
 
 # layout
 st.sidebar.header("AI Mind Map")
