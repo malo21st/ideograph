@@ -3,6 +3,7 @@ from streamlit_agraph import agraph, Node, Edge, Config
 import openai
 import numpy as np
 import random
+from tenacity import retry
 
 openai.api_key = st.secrets['api_key']
 
@@ -23,6 +24,7 @@ def generate_edge_lst(size = 100):
             edge_lst.append(((node, random.choice(node_dic[node])), (node+1, node_dic[node+1][-1])))
     return edge_lst
 
+@retry(wait=wait_fixed(2))
 def get_AI_word(word, NG_word):
     question = f"""ＮＧワード を避けて、{word} に関連のある単語を１つ答えなさい
 # ＮＧワード: {NG_word}
