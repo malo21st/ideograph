@@ -69,3 +69,4 @@ if st.sidebar.button("think... THINK !"):
     st.session_state['label'][tuple2key(tgt)] = AI_word
     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
     st.sidebar.write(f"{st.session_state['label'].values()}")
+    st.sidebar.write(f"{st.session_state['edge_lst'][:3]}")
