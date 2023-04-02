@@ -3,7 +3,7 @@ from streamlit_agraph import agraph, Node, Edge, Config
 import openai
 import numpy as np
 import random
-from tenacity import retry, wait_fixed
+from tenacity import retry, wait_fixed, stop_after_attempt
 
 openai.api_key = st.secrets['api_key']
 
@@ -33,7 +33,7 @@ def initialize():
     st.session_state['edge'] = list()
     st.session_state['label'] = dict()
 
-@retry(wait=wait_fixed(2))
+@retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def get_AI_word(word, NG_word):
     question = f"""ＮＧワード を避けて、{word} に関連のある単語を１つ答えなさい
 # ＮＧワード: {NG_word}
