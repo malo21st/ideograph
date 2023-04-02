@@ -3,7 +3,7 @@ from streamlit_agraph import agraph, Node, Edge, Config
 import openai
 import numpy as np
 import random
-from tenacity import retry
+from tenacity import retry, wait_fixed
 
 openai.api_key = st.secrets['api_key']
 
