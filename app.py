@@ -33,7 +33,9 @@ def initialize():
 
 if 'theme' not in st.session_state:
     st.session_state['theme'] = ""
-    
+
+if 'temp_src_tgt' not in st.session_state:
+    st.session_state['temp_src_tgt'] = list()
 
 @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def get_AI_word(word, NG_word):
@@ -64,12 +66,17 @@ if theme != st.session_state['theme']:
     st.session_state['theme'] = theme
 
 if st.sidebar.button("think! THINK!!  THINK !!!"):
-    src, tgt = st.session_state['edge_lst'].pop(0)
+    if not st.session_state['temp_src_tgt']:
+        src, tgt = st.session_state['edge_lst'].pop(0)
+        st.session_state['temp_src_tgt'] = [src, tgt]
+    else:
+        src, tgt = st.session_state['temp_src_tgt']
     word = st.session_state['label'][tuple2key(src)]
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
     st.session_state['node'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
     st.session_state['edge'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), width=3))
     st.session_state['label'][tuple2key(tgt)] = AI_word
+    st.session_state['temp_src_tgt'] = list()
     
 if st.session_state['theme']:
     st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
