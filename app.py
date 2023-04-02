@@ -37,8 +37,9 @@ def get_AI_word(word, NG_word):
     AI_word = response.choices[0]['message']['content'].strip()
     return AI_word
 
-if 'edge_lst' not in st.session_state:
-    st.session_state['first_time'] = True
+# if 'edge_lst' not in st.session_state:
+#     st.session_state['first_time'] = True
+def initialize():
     st.session_state['edge_lst'] = generate_edge_lst()
     st.session_state['nodes'] = list()
     st.session_state['edges'] = list()
@@ -48,7 +49,9 @@ if 'edge_lst' not in st.session_state:
 st.sidebar.header("AI Mind Map")
 theme = st.sidebar.text_input("**お題を入力してください :**")
 
-if theme and st.session_state['first_time']:
+# if theme and st.session_state['first_time']:
+if theme:
+    initialize()
     st.session_state['nodes'].append(Node(id=tuple2key((0, 1)), label=theme, size=10))
     st.session_state['label'][tuple2key((0, 1))] = theme
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
