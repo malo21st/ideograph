@@ -63,17 +63,18 @@ if theme != st.session_state['theme']:
     st.session_state['label'][tuple2key((0, 1))] = theme
     st.session_state['theme'] = theme
 
-if st.sidebar.button("think... THINK !  THINK !!"):
+if st.sidebar.button("think! THINK!!  THINK !!!"):
     src, tgt = st.session_state['edge_lst'].pop(0)
     word = st.session_state['label'][tuple2key(src)]
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
     st.session_state['node'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
     st.session_state['edge'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), width=3))
     st.session_state['label'][tuple2key(tgt)] = AI_word
-#     st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
 #     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
 #     st.sidebar.write(f"{st.session_state['label'].values()}")
 #     st.sidebar.write(f"{st.session_state['edge_lst'][:3]}")
+
+st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
 
 if st.session_state['theme']:
     mmap_dic = dict()
