@@ -41,8 +41,8 @@ def get_AI_word(word, NG_word):
 #     st.session_state['first_time'] = True
 def initialize():
     st.session_state['edge_lst'] = generate_edge_lst()
-    st.session_state['nodes'] = list()
-    st.session_state['edges'] = list()
+    st.session_state['node'] = list()
+    st.session_state['edge'] = list()
     st.session_state['label'] = dict()
 
 # layout
@@ -52,20 +52,20 @@ theme = st.sidebar.text_input("**お題を入力してください :**")
 # if theme and st.session_state['first_time']:
 if theme:
     initialize()
-    st.session_state['nodes'].append(Node(id=tuple2key((0, 1)), label=theme, size=10))
+    st.session_state['node'].append(Node(id=tuple2key((0, 1)), label=theme, size=10))
     st.session_state['label'][tuple2key((0, 1))] = theme
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
-    result = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
-    st.session_state['first_time'] = False
+    result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
+#     st.session_state['first_time'] = False
 
 if st.sidebar.button("think... THINK !"):
     src, tgt = st.session_state['edge_lst'].pop(0)
     word = st.session_state['label'][tuple2key(src)]
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
-    st.session_state['nodes'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
-    st.session_state['edges'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), width=3))
+    st.session_state['node'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
+    st.session_state['edge'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), width=3))
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
-    result = agraph(nodes=st.session_state['nodes'], edges=st.session_state['edges'], config=config)
+    result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
     st.session_state['label'][tuple2key(tgt)] = AI_word
-#     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
-#     st.sidebar.write(f"{st.session_state['label'].values()}")
+    st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
+    st.sidebar.write(f"{st.session_state['label'].values()}")
