@@ -63,7 +63,7 @@ if theme != st.session_state['theme']:
     st.session_state['label'][tuple2key((0, 1))] = theme
     st.session_state['theme'] = theme
 
-if st.sidebar.button("  think... THINK !  "):
+if st.sidebar.button("think... THINK !  THINK !!"):
     src, tgt = st.session_state['edge_lst'].pop(0)
     word = st.session_state['label'][tuple2key(src)]
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
