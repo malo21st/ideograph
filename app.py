@@ -92,4 +92,4 @@ if st.session_state['theme']:
     )
 
 config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
-result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config
+result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
