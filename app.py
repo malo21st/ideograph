@@ -55,8 +55,8 @@ def get_AI_word(word, NG_word):
 
 # layout
 st.sidebar.header("AI Mind Map")
-theme = st.sidebar.text_input("**お題を入力してください :**")
 
+theme = st.sidebar.text_input("**お題を入力してください :**")
 if theme != st.session_state['theme']:
     initialize()
     st.session_state['node'].append(Node(id=tuple2key((0, 1)), label=theme, size=10))
@@ -70,9 +70,6 @@ if st.sidebar.button("think! THINK!!  THINK !!!"):
     st.session_state['node'].append(Node(id=tuple2key(tgt), label=AI_word, size=5))
     st.session_state['edge'].append(Edge(source=tuple2key(src), target=tuple2key(tgt), width=3))
     st.session_state['label'][tuple2key(tgt)] = AI_word
-#     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
-#     st.sidebar.write(f"{st.session_state['label'].values()}")
-#     st.sidebar.write(f"{st.session_state['edge_lst'][:3]}")
 
 st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
 
@@ -90,4 +87,4 @@ if st.session_state['theme']:
 
 if st.session_state['theme']:
     config = Config(width=800, height=800, directed=False, physics=True, hierarchical=False)
-    result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
+    agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
