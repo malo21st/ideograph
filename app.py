@@ -4,6 +4,7 @@ import openai
 import numpy as np
 import random
 from tenacity import retry, wait_fixed, stop_after_attempt
+import json
 
 openai.api_key = st.secrets['api_key']
 
@@ -85,7 +86,7 @@ if st.session_state['theme']:
     mmap_dic["edges"] = [{"id": "f'{idx}'", "source": "f'{edge.source}'", "target": "f'{edge.target}'"} for idx, edge in enumerate(st.session_state['edge'])]
     st.sidebar.download_button(
         label="JSONダウンロード",
-        data=mmap_dic,
+        data=json.dumps(mmap_dic),
         file_name='mind_map.json',
         mime='text',
     )
