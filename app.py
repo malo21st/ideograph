@@ -8,9 +8,6 @@ import json
 
 openai.api_key = st.secrets['api_key']
 
-if 'theme' not in st.session_state:
-    st.session_state['theme'] = ""
-
 def tuple2key(tpl):
     return f"{tpl[0]}_{tpl[1]}"
 
@@ -33,6 +30,10 @@ def initialize():
     st.session_state['node'] = list()
     st.session_state['edge'] = list()
     st.session_state['label'] = dict()
+
+if 'theme' not in st.session_state:
+    st.session_state['theme'] = ""
+    
 
 @retry(stop=stop_after_attempt(3), wait=wait_fixed(2))
 def get_AI_word(word, NG_word):
