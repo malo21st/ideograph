@@ -63,7 +63,7 @@ if theme != st.session_state['theme']:
     st.session_state['label'][tuple2key((0, 1))] = theme
     st.session_state['theme'] = theme
 
-if st.sidebar.button("think... THINK !"):
+if st.sidebar.button("  think... THINK !  "):
     src, tgt = st.session_state['edge_lst'].pop(0)
     word = st.session_state['label'][tuple2key(src)]
     AI_word = get_AI_word(word, list(st.session_state['label'].values()))
@@ -81,7 +81,7 @@ if st.session_state['theme']:
     mmap_dic["nodes"] = [{"id": node.id, "label": label_dic[node.id]} for node in st.session_state['node']]
     mmap_dic["edges"] = [{"id": idx, "source": edge.source, "target": edge.to} for idx, edge in enumerate(st.session_state['edge'])]
     st.sidebar.download_button(
-        label="JSONダウンロード",
+        label="Down Load",
         data=json.dumps(mmap_dic),
         file_name='mind_map.json',
         mime='text',
