@@ -70,6 +70,7 @@ if st.sidebar.button("think... THINK !"):
     config = Config(width=750, height=750, directed=False, physics=True, hierarchical=False)
     result = agraph(nodes=st.session_state['node'], edges=st.session_state['edge'], config=config)
     st.session_state['label'][tuple2key(tgt)] = AI_word
-    st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
-    st.sidebar.write(f"{st.session_state['label'].values()}")
-    st.sidebar.write(f"{st.session_state['edge_lst'][:3]}")
+    st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
+#     st.sidebar.write(f"{src} {tgt} {word} {AI_word}")
+#     st.sidebar.write(f"{st.session_state['label'].values()}")
+#     st.sidebar.write(f"{st.session_state['edge_lst'][:3]}")
