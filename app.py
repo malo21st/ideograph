@@ -79,7 +79,7 @@ if st.session_state['theme']:
     mmap_dic = dict()
     label_dic = st.session_state['label']
     mmap_dic["nodes"] = [{"id": node.id, "label": label_dic[node.id]} for node in st.session_state['node']]
-    mmap_dic["edges"] = [{"id": idx, "source": edge.source, "target": edge.target} for idx, edge in enumerate(st.session_state['edge'])]
+    mmap_dic["edges"] = [{"id": idx, "source": edge.source, "target": edge.source} for idx, edge in enumerate(st.session_state['edge'])]
     st.sidebar.download_button(
         label="JSONダウンロード",
         data=json.dumps(mmap_dic),
