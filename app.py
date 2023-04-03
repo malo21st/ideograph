@@ -60,7 +60,7 @@ def get_AI_word(word, NG_word):
     return AI_word
 
 # layout
-st.sidebar.header("AI Mind Map")
+st.sidebar.title("AI Mind Map")
 
 type_think = st.sidebar.radio("**思考のタイプ :**",
                    ('幅', '中間', '深さ'), index=1, horizontal=True)
