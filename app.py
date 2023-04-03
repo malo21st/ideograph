@@ -6,7 +6,7 @@ import random
 from tenacity import retry, wait_fixed, stop_after_attempt
 import json
 
-THINK_TYPE = {'幅優先': 1.0, '中間': 0.7, '深さ優先': 0.5}
+THINK_TYPE = {'幅': 1.0, '中間': 0.7, '深さ': 0.5}
 
 openai.api_key = st.secrets['api_key']
 
@@ -63,7 +63,7 @@ def get_AI_word(word, NG_word):
 st.sidebar.header("AI Mind Map")
 
 type_think = st.sidebar.radio("**思考のタイプ :**",
-                   ('幅優先', '中間', '深さ優先'), index=1, horizontal=True)
+                   ('幅', '中間', '深さ'), index=1, horizontal=True)
 
 theme = st.sidebar.text_input("**お題を入力してください :**")
 if theme != st.session_state['theme']:
