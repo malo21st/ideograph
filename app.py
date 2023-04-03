@@ -17,7 +17,6 @@ def generate_edge_lst(divisor, size = 100):
     generator = np.random.default_rng()
     rnd = generator.normal(size=size)
     nodes = [int(abs(n) // divisor) for n in rnd]
-#     nodes = [0]*7 + [int(abs(n) // 0.9)+1 for n in rnd]
     node_dic, edge_lst = {0: [1]}, list()
     for node in nodes:
         if node_dic.get(node, False):
@@ -62,8 +61,7 @@ def get_AI_word(word, NG_word):
 # layout
 st.sidebar.title("AI Mind Map")
 
-type_think = st.sidebar.radio("**思考のタイプ :**",
-                   ('幅', '中間', '深さ'), index=1, horizontal=True)
+type_think = st.sidebar.radio("**思考のタイプ :**", ('幅', '中間', '深さ'), index=1, horizontal=True)
 
 theme = st.sidebar.text_input("**お題を入力してください :**")
 if theme != st.session_state['theme']:
@@ -87,15 +85,14 @@ if st.sidebar.button("think! THINK!!  THINK !!!"):
     
 if st.session_state['theme']:
     st.sidebar.write(f"発想した数：{len(st.session_state['node']) - 1}")
+    
     mmap_dic = dict()
     label_dic = st.session_state['label']
     mmap_dic["nodes"] = [{"id": node.id, "label": label_dic[node.id]} for node in st.session_state['node']]
     mmap_dic["edges"] = [{"id": idx, "source": edge.source, "target": edge.to} for idx, edge in enumerate(st.session_state['edge'])]
     st.sidebar.download_button(
         label="Down Load",
-        data=json.dumps(mmap_dic),
-        file_name='mind_map.json',
-        mime='text',
+        data=json.dumps(mmap_dic), file_name='mind_map.json', mime='text',
     )
 
 if st.session_state['theme']:
