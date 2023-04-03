@@ -6,15 +6,17 @@ import random
 from tenacity import retry, wait_fixed, stop_after_attempt
 import json
 
+THINK_TYPE = {'幅優先': 1.0, 'まぁまぁ': 0.7, '深さ優先': 0.5}
+
 openai.api_key = st.secrets['api_key']
 
 def tuple2key(tpl):
     return f"{tpl[0]}_{tpl[1]}"
 
-def generate_edge_lst(size = 100):
+def generate_edge_lst(divisor, size = 100):
     generator = np.random.default_rng()
     rnd = generator.normal(size=size)
-    nodes = [int(abs(n) // 0.7) for n in rnd] # 0.5 0.7 1.0
+    nodes = [int(abs(n) // divisor) for n in rnd]
 #     nodes = [0]*7 + [int(abs(n) // 0.9)+1 for n in rnd]
     node_dic, edge_lst = {0: [1]}, list()
     for node in nodes:
@@ -26,8 +28,9 @@ def generate_edge_lst(size = 100):
             edge_lst.append(((node, random.choice(node_dic[node])), (node+1, node_dic[node+1][-1])))
     return edge_lst
 
-def initialize():
-    st.session_state['edge_lst'] = generate_edge_lst()
+def initialize(type_think):
+    divisor = THINK_TYPE[type_think]
+    st.session_state['edge_lst'] = generate_edge_lst(divisor)
     st.session_state['node'] = list()
     st.session_state['edge'] = list()
     st.session_state['label'] = dict()
@@ -59,9 +62,12 @@ def get_AI_word(word, NG_word):
 # layout
 st.sidebar.header("AI Mind Map")
 
+type_think = st.radio("**思考のタイプ :**",
+                   ('幅優先', 'まぁまぁ', '深さ優先'), index=1, horizontal=True)
+
 theme = st.sidebar.text_input("**お題を入力してください :**")
 if theme != st.session_state['theme']:
-    initialize()
+    initialize(type_think)
     st.session_state['node'].append(Node(id=tuple2key((0, 1)), label=theme, size=10))
     st.session_state['label'][tuple2key((0, 1))] = theme
     st.session_state['theme'] = theme
